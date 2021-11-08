@@ -91,8 +91,6 @@ function prompts (){
   }
 };
 
-
-
 function generatePassword(){
 
   for (var i = 0; i < passwordLength; i++) {
@@ -109,11 +107,8 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword(randomArrayPassword) {
-  var password = randomArrayPassword;
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  passwordText.value = randomArrayPassword;
 }
 
 // Add event listener to generate button

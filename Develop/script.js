@@ -1,10 +1,11 @@
 // Assignment code here
-var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var upperCaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numericArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var specialArray = ["!", "#", "$", "”", "%", "&", "’", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
+var lowerCaseArray = Array.from("abcdefghijklmnopqrstuvwxyz");
+var upperCaseArray = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+var numericArray = Array.from("0123456789");
+var specialArray = Array.from("!#$”%&’()*+,-./:;<=>?@[]^_`{|}~");
 var passwordLength, randomArrayPassword, randomArray, upperCase, numeric, special;
 
+//Reset code to reset all needed variables back to original values to be able to regenerate a new password
 function reset () {
   lowerCase = false;
   upperCase = false;
@@ -92,7 +93,6 @@ function prompts (){
 };
 
 function generatePassword(){
-
   for (var i = 0; i < passwordLength; i++) {
     var randomIndexNumber = Math.floor(Math.random() * randomArray.length);
     randomArrayPassword += randomArray[randomIndexNumber];

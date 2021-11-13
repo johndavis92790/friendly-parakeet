@@ -25,7 +25,7 @@ function prompts (){
   // convert answer from prompt to an actual number
   passwordLengthPrompt = parseInt(passwordLengthPrompt);
 
-  // if else to determine if length is between 8 & 128 in length
+  // if to determine if length is between 8 & 128 in length, else it starts the function over
   if (passwordLengthPrompt < 129 && passwordLengthPrompt > 7) {
     passwordLength = passwordLengthPrompt;
     console.log("Password length - " + passwordLength);
@@ -40,11 +40,9 @@ function prompts (){
   );
   if (lowerCasePrompt){
     lowerCase = true;
+    // if true then adds the lowercase array to the random array
     randomArray = randomArray.concat(lowerCaseArray);
-  } else {
-    lowerCase = false;
   }
-  console.log("Lowercase - " + lowerCase);
 
   // if else to determine if you want to include uppercase letters
   var upperCasePrompt = window.confirm(
@@ -52,11 +50,9 @@ function prompts (){
   );
   if (upperCasePrompt){
     upperCase = true;
+    // if true then adds the uppercase array to the random array
     randomArray = randomArray.concat(upperCaseArray);
-  } else {
-    upperCase = false;
-  }
-  console.log("Uppercase - " + upperCase);
+  } 
 
   // if else to determine if you want to include numbers
   var numericPrompt = window.confirm(
@@ -64,11 +60,9 @@ function prompts (){
   );
   if (numericPrompt){
     numeric = true;
+    // if true then adds the numbers array to the random array
     randomArray = randomArray.concat(numericArray);
-  } else {
-    numeric = false;
-  }
-  console.log("Numeric - " + numeric);
+  } 
 
   // if else to determine if you want to include special characters
   var specialPrompt = window.confirm(
@@ -76,28 +70,29 @@ function prompts (){
   );
   if (specialPrompt){
     special = true;
+    // if true then adds the special array to the random array
     randomArray = randomArray.concat(specialArray);
-  } else {
-    special = false;
-  }
-  console.log("Special - " + special);
+  } 
 
-  // if else to determine if they chose yes to any one or more of the 4 previous boolean prompts, 
-  // if no, then it requires them to try again
-  if (lowerCasePrompt === false && upperCasePrompt === false && numericPrompt === false && specialPrompt === false){
+  // if to determine if they chose yes to any one or more of the 4 previous boolean prompts, 
+  // else then it requires them to try again by running funciton again
+  if (!lowerCasePrompt && !upperCasePrompt && !numericPrompt && !specialPrompt){
     window.alert("You need to include at least one of these types of characters, please try again.");
     prompts();
+    reset ();
   } else {
     generatePassword();
   }
 };
 
+// to generate password
 function generatePassword(){
+  //for loop to generate a random character as many times as the password length was chosen earlier
   for (var i = 0; i < passwordLength; i++) {
     var randomIndexNumber = Math.floor(Math.random() * randomArray.length);
+    // pulls characters from array that was created based on the choices of types of characters
     randomArrayPassword += randomArray[randomIndexNumber];
   }
-  console.log(randomArrayPassword);
   writePassword(randomArrayPassword);
   reset ();
 };

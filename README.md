@@ -16,4 +16,4 @@ Follow the following link to load code into a browser.
 
 Here is a screenshot of the finished webpage:
 
-![Finished screenshot](assets\images\03-javascript-homework-demo.png)
+![Finished screenshot](./assets/images/03-javascript-homework-demo.png)

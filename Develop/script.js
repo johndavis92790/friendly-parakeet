@@ -28,7 +28,6 @@ function prompts (){
   // if to determine if length is between 8 & 128 in length, else it starts the function over
   if (passwordLengthPrompt < 129 && passwordLengthPrompt > 7) {
     passwordLength = passwordLengthPrompt;
-    console.log("Password length - " + passwordLength);
   } else {
     window.alert("You did not pick a valid option. Try again.");
     prompts();

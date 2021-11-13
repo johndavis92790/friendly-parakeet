@@ -3,22 +3,23 @@ var lowerCaseArray = Array.from("abcdefghijklmnopqrstuvwxyz");
 var upperCaseArray = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 var numericArray = Array.from("0123456789");
 var specialArray = Array.from("!#$”%&’()*+,-./:;<=>?@[]^_`{|}~");
-var passwordLength, randomArrayPassword, randomArray, upperCase, numeric, special;
+var passwordLength, randomArrayPassword, randomArrayPrompt, lowerCasePrompt, upperCasePrompt, numericPrompt, specialPrompt;
 
 //Reset code to reset all needed variables back to original values to be able to regenerate a new password
-function reset () {
-  lowerCase = false;
-  upperCase = false;
-  numeric = false;
-  special = false;
+function reset() {
+  lowerCasePrompt = false;
+  upperCasePrompt = false;
+  numericPrompt = false;
+  specialPrompt = false;
+  passwordLengthPrompt = 0;
   passwordLength = 0;
   randomArray = [];
   randomArrayPassword = [];
 }
 
-function prompts (){
-  reset ();
-  var passwordLengthPrompt = window.prompt(
+function prompts(){
+  reset();
+  passwordLengthPrompt = window.prompt(
     "How many characters would you like in this password?"
   );
 
@@ -31,54 +32,48 @@ function prompts (){
   } else {
     window.alert("You did not pick a valid option. Try again.");
     prompts();
+    return;
   }
-
+  
   // if else to determine if you want to include lowercase letters
-  var lowerCasePrompt = window.confirm(
+  lowerCasePrompt = window.confirm(
     "Would you like to include lowercase letters in this password?"
   );
   if (lowerCasePrompt){
-    lowerCase = true;
     // if true then adds the lowercase array to the random array
     randomArray = randomArray.concat(lowerCaseArray);
-  }
-
+  } 
   // if else to determine if you want to include uppercase letters
-  var upperCasePrompt = window.confirm(
+  upperCasePrompt = window.confirm(
     "Would you like to include uppercase letters in this password?"
   );
   if (upperCasePrompt){
-    upperCase = true;
     // if true then adds the uppercase array to the random array
     randomArray = randomArray.concat(upperCaseArray);
-  } 
-
+  }
   // if else to determine if you want to include numbers
-  var numericPrompt = window.confirm(
+  numericPrompt = window.confirm(
     "Would you like to include numbers in this password?"
   );
   if (numericPrompt){
-    numeric = true;
     // if true then adds the numbers array to the random array
     randomArray = randomArray.concat(numericArray);
-  } 
-
+  }
   // if else to determine if you want to include special characters
-  var specialPrompt = window.confirm(
+  specialPrompt = window.confirm(
     "Would you like to include special characters in this password?"
   );
   if (specialPrompt){
-    special = true;
     // if true then adds the special array to the random array
     randomArray = randomArray.concat(specialArray);
   } 
-
   // if to determine if they chose yes to any one or more of the 4 previous boolean prompts, 
   // else then it requires them to try again by running funciton again
   if (!lowerCasePrompt && !upperCasePrompt && !numericPrompt && !specialPrompt){
     window.alert("You need to include at least one of these types of characters, please try again.");
     prompts();
-    reset ();
+    reset();
+    return;
   } else {
     generatePassword();
   }
@@ -93,7 +88,7 @@ function generatePassword(){
     randomArrayPassword += randomArray[randomIndexNumber];
   }
   writePassword(randomArrayPassword);
-  reset ();
+  reset();
 };
 
 // Get references to the #generate element
